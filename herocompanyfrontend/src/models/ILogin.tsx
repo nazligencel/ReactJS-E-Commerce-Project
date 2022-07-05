@@ -1,24 +1,28 @@
 export interface ILogin {
     status:  boolean;
+    message?: string;
     jwt?:     string;
     result?:  Result;
-    message?: string;
+    error?:   string
 }
 
 export interface Result {
+    companyName?:        string;
+    adminName?:          string;
+    adminSurname?:       string;
     createdBy?:          string;
     lastModifiedBy?:     string;
     createdDate?:        number;
     lastModifiedDate?:   number;
     id?:                 number;
     firstName?:          string;
-    lastName?:           string;
+    secondName?:           string;
     phone?:              string;
     email?:              string;
     password?:           string;
     enabled?:            boolean;
-    tokenExpired?:       true;
-    role?:               Role[];
+    tokenExpired?:       boolean;
+    roles?:        Role[];
     resetPasswordToken?: string;
 }
 

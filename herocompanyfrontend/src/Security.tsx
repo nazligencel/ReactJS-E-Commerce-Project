@@ -1,39 +1,36 @@
 import React from 'react'
 import { Navigate } from 'react-router-dom'
-import NavBar from './components/NavBar'
-import { Result } from './models/ILogin'
+import NavBarCustomer from './components/NavBarCustomer'
+import{Result} from './models/ILogin'
 
-function Security( item: { component: JSX.Element } ) {
+function Security(item:{componet:JSX.Element}) {
 
-  
-   const control = () => {
-    const stSession = sessionStorage.getItem("result")
-    if ( stSession ) {
+const control=()=>{
+    const stSession=sessionStorage.getItem("result")
+    if(stSession){
         try {
-
-            const result:Result = JSON.parse( stSession )
-            return result
-
+            const result:Result  =JSON.parse(stSession)
+     return result
         } catch (error) {
             sessionStorage.removeItem('result')
             return null
         }
-
-    }else {
+     
+    }else{
         return null
     }
-   }
-    //const bilControl = control();
-    const resultcontrol=control();
+
+}
+/* const SearchProduct=(evt: React.KeyboardEvent)=>{
+    const input = (evt.target as HTMLInputElement).value
+} */
+
+const resultcontrol=control();
+
   return (
+    resultcontrol!=null&&resultcontrol.roles![0].id===3?
+    <><NavBarCustomer result={resultcontrol}  /> <div className='mt-2'>{item.componet}</div> </>:<Navigate to='/'/>
 
-
-    
-    resultcontrol === null 
-    ? 
-        <Navigate to='/' />
-    :
-       <> <NavBar result={resultcontrol} /> {item.component} </> 
   )
 }
 
